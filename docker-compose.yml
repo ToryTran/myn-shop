@@ -21,11 +21,14 @@ services:
     restart: always
     volumes:
       - wp-content:/var/www/html/wp-content
+      - ./config/wp.ini:/usr/local/etc/php/conf.d/wp.ini
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_CONFIG_EXTRA: |
+        define('FS_METHOD','direct');
 volumes:
   db_data: {}
   wp-content:
